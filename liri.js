@@ -99,21 +99,23 @@ function music(num){
         .then(function(answer) {
 
             if(answer === undefined){ 
-                spotify.request("https://api.spotify.com/v1/tracks/5ksRONqssB7BR161NTtJAm" )
-                .then(function(data) {
+                spotify.search({ type: 'track', query: "the sign" }, function(err, data) {
+                    if (err) {
+                    return console.log('Error occurred: ' + err);
+                    }
+                    var songinfo = data.tracks.items[5];
                     
-                    console.log(" ");
-                    console.log("-------------------");
-                    console.log("    Spotify Song");
-                    console.log("-------------------");
-                    console.log(" ");
-                    console.log(">>> Artist: " + data[i].artists[0].name);
-                    console.log(">>> Song: " + data[i].name);
-                    console.log(">>> Album: " + data[i].album.name);
-                    console.log(">>> Preview Url: " + data[i].preview_url);
-                })
-                .catch(function(err) {
-                console.error('Error occurred: ' + err); 
+                        console.log(" ");
+                        console.log("-------------------");
+                        console.log("    Spotify Song");
+                        console.log("-------------------");
+                        console.log(" ");
+                        console.log(">>> Artist: " + songinfo.artists[0].name);
+                        console.log(">>> Song: " + songinfo.name);
+                        console.log(">>> Album: " + songinfo.album.name);
+                        console.log(">>> Preview Url: " + songinfo.preview_url);
+                        console.log("****************************************************************");
+                
                 });
 
             }
@@ -123,7 +125,7 @@ function music(num){
                     return console.log('Error occurred: ' + err);
                     }
                     var songinfo = data.tracks.items;
-                    for(var i =0; i<songinfo.artists.length; i++){
+                    for(var i =0; i<songinfo.length; i++){
                         console.log(" ");
                         console.log("-------------------");
                         console.log("    Spotify Song");
@@ -149,8 +151,9 @@ function music(num){
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
+            console.log(data);
             var songinfo = data.tracks.items;
-            for(var i =0; i<songinfo.artists.length; i++){
+            for(var i =0; i<songinfo.length; i++){
                 console.log(" ");
                 console.log("-------------------");
                 console.log("    Spotify Song");
