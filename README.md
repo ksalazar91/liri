@@ -24,7 +24,7 @@ liri-node-app like siri but text
             * The album that the song is from
     
         If no song is provided then your program will default to "The Sign" by Ace of Base. You need:
-            npm install spotify-web-api-node --save and spotify developer credientials + token.
+             npm install --save node-spotify-api and spotify developer credientials + token.
     
     3) LIRI will display a movie from the OMDB api. it will show the following information about the movie
 
